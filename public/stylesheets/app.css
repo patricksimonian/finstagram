@@ -1,0 +1,42 @@
+header {
+    background-color: #244751;
+    color: #E8FDFF;
+}
+
+body {
+    background-color: whitesmoke;
+}
+
+main {
+    background-color: white;
+    padding: 16px;
+}
+
+.post {
+    margin-bottom: 48px;
+    border-bottom: 1px solid #244751;
+}
+
+.post .user-info img {
+    border-radius: 50%;
+}
+
+.post p {
+    font-family: 'Muli', sans-serif;
+}
+
+.post .photo {
+    opacity: .75;
+}
+
+.post .photo:hover {
+    opacity: 1;
+}
+
+.post .avatar_icon {
+    display: inline-block;
+}
+
+.post .lotr_bio {
+    display: inline-block;
+}

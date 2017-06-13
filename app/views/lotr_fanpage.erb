@@ -1,0 +1,29 @@
+
+           <header>
+             <h1>LOTR Fan page</h1>
+           </header>
+           <main role="main">
+             <p>Number of Characters On our Bio:</p>
+             LOTR fan autobiography! :)
+             <% @lotr_characters.inspect %>
+             <% @lotr_characters.each do |character| %>
+             <article class="post">
+                <div class="lotr_bio">
+                  <p>Hi there I'm <%= character.name %></p>
+                  <p>I'm <%= character.age %> years old</p>
+                  <% if character.has_beard%>
+                      <p>I have a beard</p>
+                  <% else %>
+                      <p>I don't have a beard</p>
+                  <% end %>
+                  <p>I'm a <%= character.race %></p>  
+                </div>
+                <div class="avatar_icon">
+                  <img src="<%= character.icon_url %>">    
+                </div>
+             </article>
+            <% end %>
+            <footer>
+                <a href="/lotr_characters/new">Create a New Lotr Character here</a>
+            </footer>
+            </main>
