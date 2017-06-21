@@ -1,8 +1,14 @@
+use Rack::MethodOverride
+
 helpers do 
   def current_user
-    if session[:user_id]
+    if is_logged_in?
         User.find(session[:user_id])
     end
+  end
+  
+  def is_logged_in?
+     !session[:user_id].nil? 
   end
 end
 
@@ -43,17 +49,39 @@ post '/signup' do
     end
 end
 
+get '/posts/new' do
+  @post = Post.new
+  erb :"posts/new"
+end
 
+post '/posts' do
+  #instantiate new post and attempt save
+  
+  @post = Post.new({photo_url: params[:photo_url], user_id: current_user.id})
+  if @post.save
+      redirect "/"
+  else
+     erb :"posts/new" 
+  end
+end
+# changes to note**
+# index.erb anchored images to a show "one" view
+# added show.erb 
+# add shared folder
+# added lotr_character folder
+
+
+# get all of our lotr characters
 get '/lotr_characters' do
   @lotr_characters = LotrCharacter.all
-  erb :lotr_fanpage
+  erb :'lotr_fanpage/index'
 end
-
+# get the view that has our create a character form
 get "/lotr_characters/new" do
-    erb :lotr_character_new
+    erb :'lotr_fanpage/new'
 end
-
-post '/lotr_characters/create' do
+#post our create lotr character form
+post '/lotr_characters' do
     @lotr_character = LotrCharacter.new({
         name: params[:name],
         icon_url: params[:icon_url],
@@ -62,39 +90,84 @@ post '/lotr_characters/create' do
         has_beard: params[:has_beard] == "on" ? true : false #ternary operator
     })
     
-    # What does = do?
-    # params[:age] = 1
-    # this would reset params[:age] to be 1
-    
-    # What does == do?
-    # params[:age] == 1
-    # this would check IF params[:age] is equal to 1, and tell us 'true or 'false'
-    
     if @lotr_character.save
         redirect '/lotr_characters'
     else
-        erb :lotr_character_new
+        erb :'lotr_fanpage/new'
     end
 end
 
+# what if we want a view to  get a specific lotr character?
+get '/lotr_characters/:id' do
+    @lotr_character = LotrCharacter.find_by({id: params[:id]})
+    if @lotr_character
+        erb :'lotr_fanpage/show'
+    else
+        redirect '/'
+    end
+end
+##if we have time.. edit and patch routes
 
 
-get '/loop_demo_words' do
- list_of_words = ["welcome", "to", "the", "wonderful", "world", "of", "ruby"]
- 
- joined_list_of_words = ""
- list_of_words.each do |word|
-     if word != joined_list_of_words[joined_list_of_words.length - 1]
-         joined_list_of_words += word + " "
-     else
-         joined_list_of_words += word + "."
-     end
- end
- joined_list_of_words
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+get '/lotr_characters/:id/edit' do
+    @lotr_character = LotrCharacter.find_by({id: params[:id]})
+    if @lotr_character
+      erb :'lotr_fanpage/edit'   
+    else
+      #no character found
+      #redirect user to home since they would only find them selves
+      #at this point if they attempted to modify the url directly
+      redirect '/'
+    end
 end
 
-
-
+post '/lotr_characters/:id' do
+    lotr_character = LotrCharacter.find_by({id: params[:id]})
+    lotr_character.name = params[:'updated-name']
+    lotr_character.icon_url = params[:'updated-icon-url']
+    lotr_character.save
+    redirect "/lotr_characters/#{lotr_character.id}"
+end
+#   <input type="hidden" name="_method" value="PATCH">
+# patch '/lotr_character/:id' do
+    # we get access to the params hash since data is stored in the request body
+    # lotr_char = LotrCharacter.find_by({id: params[:id]})
+    # lotr_char.name = params[:name]
+    # lotr_char.has_beard = params[:has_beard] == 'on' ? true: false
+# end
 
 
 

@@ -7,8 +7,25 @@
           <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
           <link rel="stylesheet" href="/stylesheets/lib.css">
           <link rel="stylesheet" href="/stylesheets/app.css">
+          <!-- cdns -->
+          <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
         </head>
         <body>
             <%= yield %>
+            
+            <script>
+            
+                let iconUrlInput = document.getElementById("icon_url");
+                iconUrlInput.addEventListener("blur", (event) => {
+                    let iconUrl = event.target.value;
+                    let imgPreview = document.getElementById("lotr-preview");
+                    imgPreview.setAttribute("src", iconUrl);
+                });
+                // $("#icon_url").on("blur", (event) => {
+                //   //grab icon url and use it as the src attribute for #lotr-preview
+                //   let iconUrl = event.target.value;
+                //   $("#lotr-preview").attr("src", icon_url);
+                // });
+            </script>
         </body>
     </html>
