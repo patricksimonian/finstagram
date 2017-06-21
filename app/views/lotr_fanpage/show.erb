@@ -1,0 +1,12 @@
+
+           <header>
+             <h1>LOTR Fan page</h1>
+           </header>
+           <main role="main">
+             <p>Single LOTR Character</p>
+              <%= erb(:'lotr_fanpage/shared/p_char', locals: {character: @lotr_character}) %>
+            <footer>
+                <a href="/lotr_characters/<%= @lotr_character[:id] %>/edit">Edit</a>
+                <a href="/lotr_characters">Back Home</a>
+            </footer>
+            </main>

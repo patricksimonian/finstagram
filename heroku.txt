@@ -1,0 +1,6 @@
+wget -O- https://toolbelt.heroku.com/install-ubuntu.sh | sh
+--w get stands for web get, to download files from web via cmd
+heroku login --login with heroku credentials
+heroku create --creates a heroku host service
+git push heroku -pushes your files to heroku's system which also installs all gems
+heroku run bundle exec rake db:migrate -run migrations on the heroku system which uses postgressql

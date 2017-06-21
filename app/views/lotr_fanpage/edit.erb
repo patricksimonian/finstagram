@@ -1,0 +1,8 @@
+<h2>Update Your Character!</h2>
+<form action="/lotr_characters/<%=@lotr_character[:id]%>" method="POST">
+    <label for="lotr-name">Name:</label>
+    <input type="text" id="lotr-name" name="updated-name" value="<%= @lotr_character[:name] %>">
+    <label for="lotr-icon-url">Image:</label>
+    <input type="text" id="lotr-icon-url" name="updated-icon-url" value="<%= @lotr_character[:icon_url] %>">
+    <input type="submit" value="Update!">
+</form>

@@ -1,0 +1,15 @@
+             <article class="post">
+                <div class="lotr_bio">
+                  <p>Hi there I'm <%= character.name %></p>
+                  <p>I'm <%= character.age %> years old</p>
+                  <% if character.has_beard%>
+                      <p>I have a beard</p>
+                  <% else %>
+                      <p>I don't have a beard</p>
+                  <% end %>
+                  <p>I'm a <%= character.race %></p>  
+                </div>
+                <div class="avatar_icon">
+                  <img src="<%= character.icon_url %>">    
+                </div>
+             </article>

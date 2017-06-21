@@ -1,0 +1,15 @@
+
+           <header>
+             <h1>LOTR Fan page</h1>
+           </header>
+           <main role="main">
+             <p>Number of Characters On our Bio:</p>
+             LOTR fan autobiography! :)
+             <% @lotr_characters.inspect %>
+             <% @lotr_characters.each do |char| %>
+             <%= erb(:'lotr_fanpage/shared/p_char', locals: {character: char}) %>
+            <% end %>
+            <footer>
+                <a href="/lotr_characters/new">Create a New Lotr Character here</a>
+            </footer>
+            </main>
