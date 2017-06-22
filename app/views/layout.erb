@@ -9,18 +9,31 @@
           <link rel="stylesheet" href="/stylesheets/app.css">
           <!-- cdns -->
           <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+
         </head>
         <body>
             <%= yield %>
             
             <script>
             
-                let iconUrlInput = document.getElementById("icon_url");
-                iconUrlInput.addEventListener("blur", (event) => {
-                    let iconUrl = event.target.value;
-                    let imgPreview = document.getElementById("lotr-preview");
-                    imgPreview.setAttribute("src", iconUrl);
-                });
+                // // let iconUrlInput = document.getElementById("icon_url");
+                // // iconUrlInput.addEventListener("blur", (event) => {
+                // //     let iconUrl = event.target.value;
+                // //     let imgPreview = document.getElementById("lotr-preview");
+                // //     imgPreview.setAttribute("src", iconUrl);
+                // // });
+                
+                // $.ajax({
+                //   method: "POST",
+                //   contentType: "application/json",
+                //   dataType: "json",
+                //   data: JSON.stringify({
+                //       photo_url: "https://vignette2.wikia.nocookie.net/lisa-rpg/images/1/15/Rando.png/revision/latest?cb=20151014001146"
+                //   }),
+                //   url: "/api/posts/new"
+                // //   success: 
+                // // error:
+                // })
                 // $("#icon_url").on("blur", (event) => {
                 //   //grab icon url and use it as the src attribute for #lotr-preview
                 //   let iconUrl = event.target.value;
