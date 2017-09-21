@@ -27,12 +27,15 @@ main {
 
 .post .photo {
     opacity: .75;
+    transition: opacity 1s;
 }
 
 .post .photo:hover {
     opacity: 1;
 }
-
+.post .photo:focus {
+    opacity: 0;
+}
 .post .avatar_icon {
     display: inline-block;
 }
@@ -40,3 +43,35 @@ main {
 .post .lotr_bio {
     display: inline-block;
 }
+
+.user-info h2 {
+    font-size: 22px;
+    text-decoration: underline;
+}
+
+.user-info h2:hover {
+  animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+

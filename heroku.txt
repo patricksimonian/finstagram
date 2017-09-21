@@ -1,1 +1,10 @@
 https://gist.github.com/matt297/dfc9a2c7e6c13516a767879f2ceb724e
+
+
+-topics:
+ -javascript crash course
+   -crash course into jQuery (js library)
+ 1:1 comparison between js and ruby
+ 
+  -importance of reading docs
+  
