@@ -1,0 +1,37 @@
+
+           <header>
+             <h1>Sign up to kitten page</h1>
+           </header>
+           <main role="main">
+             <p>add owner details below to register</p>
+             <form action="/owners" method="POST">
+                
+                 <div class="form-group">
+                    <label for="owner-name">Name</label>
+                    <input type="text" name="name" id="owner-name" minlength="2">
+                 </div>
+                 
+                 <div class="form-group">
+                    <label for="username">username</label>
+                    <input type="text" name="username" id="username" minlength="2">
+                 </div>
+                 
+                 <div class="form-group">
+                    <label for="owner-age">Age</label>
+                    <input type="number" name="age" id="owner-age" min="1">
+                 </div>
+                 
+                 <div class="form-group">
+                    <label for="owner-pw">Password</label>
+                    <input type="password" name="password" id="owner-pw" minlength="5">
+                 </div>
+                 
+                 <div class="form-group">
+                     <input type="submit" name="submit" value="Signup">
+                 </div>
+             </form>
+
+             <footer>
+                 <a href="/owners">back to owners</a>
+             </footer>
+           </main>

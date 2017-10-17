@@ -1,9 +1,5 @@
 <form method="post" action="/posts">
-    <ul class="errors">
-        <% @post.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-        <% end %>
-    </ul>
+    <%= erb(:'shared/p_error_messages', {locals: {object: @post}}) %>
     <div class="form-group">
         <label for="photo_url">Photo Url</label>
         <input type="text" id="photo_url" name="photo_url">

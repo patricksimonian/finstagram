@@ -4,7 +4,7 @@
            </header>
            <main role="main">
              <p>add some lotr characters below</p>
-             <form action="/lotr_characters/create" method="POST">
+             <form action="/lotr_characters" method="POST">
                  <ul class="error">
                     <% if @lotr_character && @lotr_character.errors %>
                         <% @lotr_character.errors.full_messages.each do |msg| %>
@@ -37,9 +37,9 @@
                      <button>Submit</button>
                  </div>
              </form>
-             <div class="img-preview">
-                 <img id="lotr-preview" src="" alt="no preview">
-             </div>
+             <!--<div class="img-preview">-->
+             <!--    <img id="lotr-preview" src="" alt="no preview">-->
+             <!--</div>-->
              <footer>
                  <a href="/lotr_characters">View FanPage</a>
              </footer>

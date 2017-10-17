@@ -1,0 +1,26 @@
+
+           <header>
+             <h1>Login</h1>
+           </header>
+           <main role="main">
+             <form action="/owners/login" method="POST">
+                
+                 <div class="form-group">
+                    <label for="username">username</label>
+                    <input type="text" name="username" id="username" minlength="2">
+                 </div>
+                 
+                 <div class="form-group">
+                    <label for="owner-pw">Password</label>
+                    <input type="password" name="password" id="owner-pw" minlength="5">
+                 </div>
+                 
+                 <div class="form-group">
+                     <input type="submit" name="submit" value="login">
+                 </div>
+             </form>
+
+             <footer>
+                 <a href="/owners">back to owners</a>
+             </footer>
+           </main>

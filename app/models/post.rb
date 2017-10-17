@@ -4,7 +4,10 @@ class Post < ActiveRecord::Base
     has_many :likes
     
     # validations
-    validates_presence_of :user, :photo_url
+    validates :photo_url, presence: true
+    validates :photo_url, format: { with: URI.regexp }, if: 'photo_url.present?'
+    validates :user_id, presence: true
+    validates :user, presence: true
     
     def humanized_time_ago
         time_ago_in_seconds = Time.now - self.created_at

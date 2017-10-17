@@ -1,5 +1,8 @@
 class User < ActiveRecord::Base
-   validates_presence_of :email, :avatar_url, :username, :password
-   validates_uniqueness_of :email, :username
+   validates :avatar_url, presence: true
+   validates :avatar_url, format: { with: URI.regexp }, if: 'avatar_url.present?'
+   validates :email, presence: true, uniqueness: true
+   validates :username, presence: true, uniqueness: true
+   validates :password, presence: true
 end
 

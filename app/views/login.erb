@@ -1,5 +1,7 @@
 <form action="/login" method="POST">
-    <%= @error_message if @error_message %>
+    
+      <p><%= @error_message %> </p>
+
     <div class="form-group">
         <label for="username">Username:</label>
         <input type="text" id="username" name="username">

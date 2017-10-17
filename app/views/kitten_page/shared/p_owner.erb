@@ -1,0 +1,20 @@
+ <article class="post">
+  <div class="user-info">
+      <h2>Name: <%= owner.name %></h2>
+      <h3>Age: <%= owner.age %></h3>
+  </div>
+  <ul class="comments">
+     <h4> My kittens</h4>
+     <!-- does owner have kittens?-->
+     <% if owner.kittens.length > 0 %>
+         <% owner.kittens.each do |kitty| %>
+          <li>
+              <p>Name: <%= kitty.name %></p>
+              <p>Breed: <%= kitty.breed %></p>
+          </li>
+          <% end %>
+     <% else %>
+        Sadly, I have no kittens to speak of. 
+     <% end %>
+  </ul>
+</article>

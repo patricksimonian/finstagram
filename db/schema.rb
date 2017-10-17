@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 3) do
 
   create_table "comments", force: :cascade do |t|
     t.integer  "user_id"
@@ -21,11 +21,32 @@ ActiveRecord::Schema.define(version: 0) do
     t.datetime "updated_at"
   end
 
+  create_table "kittens", force: :cascade do |t|
+    t.string  "name"
+    t.string  "breed"
+    t.integer "owner_id"
+  end
+
   create_table "likes", force: :cascade do |t|
     t.integer  "user_id"
     t.integer  "post_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "lotr_characters", force: :cascade do |t|
+    t.string  "name"
+    t.integer "age"
+    t.boolean "has_beard"
+    t.string  "race"
+    t.string  "icon_url"
+  end
+
+  create_table "owners", force: :cascade do |t|
+    t.string "name"
+    t.string "age"
+    t.string "password"
+    t.string "username"
   end
 
   create_table "posts", force: :cascade do |t|

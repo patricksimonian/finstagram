@@ -35,6 +35,7 @@ class CreateBaseTables < ActiveRecord::Migration
        t.string :race
        t.string :icon_url
     end
-  end
 
+  end
+  
 end
