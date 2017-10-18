@@ -14,9 +14,6 @@ class CreateTestTables < ActiveRecord::Migration
       t.references :owner
     end
     
-    change_table :owners do |t|
-      add_column :password, :string
-    end
   end
   
 end
