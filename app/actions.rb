@@ -92,6 +92,8 @@ post '/posts' do
         # do something appropriate for not being logged in
         "Your not logged in!!!! BAD"
     end
+
+
 end
 
 
