@@ -11,6 +11,47 @@ main {
     background-color: white;
     padding: 16px;
 }
+
+.errors {
+    color: #f96000;    
+}
+/*login form styling*/
+#login-form-title {
+    text-align: center;
+    padding: 10px 0;
+}
+
+#login-form {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+/*fancy shmancy submit button*/
+#login-form input[type="submit"] {
+    border: 0;
+    outline: none;
+    padding: 5px 35px;
+    color: #6e6e6e;
+    font-size: 1.5em;
+    background-color: #ffcd03;
+    transition: all .25s ease-in-out;
+}
+#login-form input[type="submit"]:hover {
+    background-color: #e9bd0a;
+}
+#login-form input[type="submit"]:active {
+    background-color: #03a9ff;
+}
+#signup-form {
+  padding: 25px;
+}
+
+#signup-form input[type="submit"] {
+    background-color: #d6e312;
+    border: 0;
+    padding: 10px 15px;
+    border-radius: 5px;
+}
 .owners-header {
     display: flex;
     justify-content: space-between;

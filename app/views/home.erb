@@ -1,0 +1,10 @@
+<div>
+    you are at home
+    <h1>Hi my name is <%=@billy_bob.name %></h1>
+    <p>These are my kittens</p>
+    <ul>
+        <% @kittens.each do |kitten| %>
+            <li><%= kitten.name %></li>
+        <% end %>
+    </ul>
+</div>

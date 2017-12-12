@@ -138,11 +138,17 @@ puts get_phone_from_string('111mawesoe')
 
 
 
+def replace(string, char, replacement)
+  new_string = ""
+  string.each_char do |c|
+    new_string += c == char ? replacement : c
+  end
+  new_string
+end
 
 
 
-
-
+puts replace("hello *", "*", "world")
 
 
 

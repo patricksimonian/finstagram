@@ -1,28 +1,20 @@
 use Rack::MethodOverride
 
-helpers do 
-  ##making methods in here are useable inside our erb files
-  def is_logged_in?
-    !session[:user_id].nil? 
-  end
-  
-  def logout_user
-    session[:user_id] = nil 
-  end
-  
-  def current_user
-    # session[:user_id] ALWAYS EXISTS
-     User.find_by(id: session[:user_id])
+def humanized_time_ago(time_ago_in_minutes)
+  if time_ago_in_minutes >= 60
+    "#{time_ago_in_minutes / 60} hours ago"
+  else
+    "#{time_ago_in_minutes} minutes ago"
   end
 end
 
+def current_user
+  User.find_by({id: session[:user_id]})
+end
 
-
-
-
-
-
-
+def is_logged_in?
+  !current_user.nil?
+end
 
 get '/' do
     @posts = Post.order(created_at: :desc)
@@ -34,19 +26,20 @@ get '/login' do
 end
 
 get '/logout' do
-  logout_user
+  session[:user_id] = nil
   redirect "/"
 end
 
 post '/login' do
-   user = User.find_by({username: params[:username]})
-   if user && user.password == params[:password]
-     session[:user_id] = user.id
-     redirect '/'
-   else
-     @error_message = "The username and or password was incorrect"
-     erb :login
-   end
+  user = User.find_by({username: params[:username]})
+  if user && user.password == params[:password]
+    #logging user
+    session[:user_id] = user.id
+    redirect '/'
+  else
+    @error_message = "username or password was incorrect"
+    erb :login
+  end
 end
 
 
@@ -64,10 +57,14 @@ post '/signup' do
        erb(:signup)
     end
 end
+# POSTS
 
-# 
+before '/posts/new' do
+  if !is_logged_in?
+    redirect '/login'
+  end
+end
 get '/posts/new' do
-
       @post = Post.new
       erb :"posts/new"
 end
@@ -96,10 +93,48 @@ post '/posts' do
 
 end
 
-
-
 get '/posts/:id' do
    @post = Post.find(params[:id])
    erb :'/posts/show' 
 end
 
+get '/home' do
+  @billy_bob = Owner.find(6)
+  erb :home
+end
+
+get '/fizzbuzz' do
+#   FizzBuzz
+# We're going to write a simple program together to continue
+# to hone our Ruby skills. This one's a classic.
+# Our code should do the following things:
+# Make a list of numbers from 1 to 100, inclusive
+# For each number, perform the following tests on it:
+# FIZZ
+# If the number is divisible by 3, output 'Fizz'
+# BUZZ
+# If the number is divisible by 5, output 'Buzz'
+# FIZZBUZZ
+# If the number is divisible by BOTH 3 and 5, output 'FizzBuzz'
+  def fizzbuzz(low, high)
+    fizzbuzz_string_output = []
+    (low..high).each do |n|
+      value_to_push = ""
+      #flow control exists within loop
+      if n % 3 == 0
+        value_to_push += "Fizz"
+      end
+    
+      if n % 5 == 0
+        value_to_push += "Buzz"
+      end
+      
+      
+      fizzbuzz_string_output.push(value_to_push == "" ? n : value_to_push)
+    end
+    fizzbuzz_string_output.join(",<br>")
+  end
+  
+  result = fizzbuzz(50, 100)
+  result.to_s
+end

@@ -1,6 +1,6 @@
-<form action="/login" method="POST">
-    
-      <p><%= @error_message %> </p>
+<h2 id="login-form-title">Login</h2>
+<form action="/login" method="POST" id="login-form">
+    <p class="errors"><%= @error_message %> </p>
 
     <div class="form-group">
         <label for="username">Username:</label>

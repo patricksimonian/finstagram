@@ -1,0 +1,19 @@
+body {
+    font-family: cursive;
+}
+#info-container {
+    overflow: auto;
+}
+
+#info-container h1 {
+    color: red;
+}
+
+img {
+    border: 3px solid brown;
+    border-radius: 7px;
+    width: 150px;
+    float: left;
+    padding: 15px;
+    margin-right: 25px;
+}

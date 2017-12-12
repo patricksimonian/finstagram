@@ -1,0 +1,19 @@
+
+      <header>
+         <h1>finstagram</h1>
+         <div class="login-info">
+            <% if is_logged_in? %>
+                <a href="/logout">Logout</a>
+                <a href="/posts/new">Make a post</a>
+            <% else %>
+                <a href="/login">Login</a>
+                <a href="/signup">Signup</a>
+            <% end %>
+         </div>
+      </header>
+
+      <main role="main">
+         <% @posts.each do |post| %>
+            <%= erb(:'/shared/p_post', {locals: {post: post}}) %>
+         <% end %>
+      </main>
