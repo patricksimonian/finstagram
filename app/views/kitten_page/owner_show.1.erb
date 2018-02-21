@@ -1,0 +1,42 @@
+
+           <header>
+             <% if @is_own_user %>
+               <h1> Welcome back!</h1>
+             <% else %>
+               <h1> Kitten Owner</h1>
+             <% end  %>
+           </header>
+           <main role="main">
+             <p>Single Owner</p>
+             <article class="post">
+              <div class="user-info">
+                  <h2>Name: <%= @owner.name %></h2>
+                  <h3>Age: <%= @owner.age %></h3>
+              </div>
+              <ul class="comments">
+                 <h4> My kittens</h4>
+                 <!-- does owner have kittens?-->
+                 <% if @owner.kittens.length > 0 %>
+                     <% @owner.kittens.each do |kitty| %>
+                      <li>
+                          <p>Name: <%= kitty.name %></p>
+                          <p>Breed: <%= kitty.breed %></p>
+                      </li>
+                      <% end %>
+                 <% else %>
+                    Sadly, I have no kittens to speak of. 
+                 <% end %>
+              </ul>
+          </article>
+            <footer>
+                <% if @is_own_user %>
+                    <a href="/owners/<%= @owner.id %>/kittens/new">Add a kitty</a>
+                <% end %>
+                <a href="/owners">Back Home</a>
+            </footer>
+            </main>
+            
+            
+            
+            
+            <!--## erb(:'kitten_page/shared/p_owner', locals: {owner: @owner}) %>-->

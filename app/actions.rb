@@ -59,14 +59,20 @@ post '/signup' do
 end
 # POSTS
 
+# before '/posts/new' do
+#   if !is_logged_in?
+#     redirect '/login'
+#   end
+# end
+
+
 before '/posts/new' do
-  if !is_logged_in?
-    redirect '/login'
-  end
+  redirect('/login') unless is_logged_in?
 end
+
 get '/posts/new' do
-      @post = Post.new
-      erb :"posts/new"
+    @post = Post.new
+    erb :"posts/new"
 end
 
 post '/posts' do
@@ -98,10 +104,50 @@ get '/posts/:id' do
    erb :'/posts/show' 
 end
 
+# comments handling
+
+# creating a comment
+
+post '/comments' do
+  # point values from params to variables
+  text = params[:text]
+  post_id = params[:post_id]
+
+  # instantiate a comment with those values & assign the comment to the `current_user`
+  comment = Comment.new({ text: text, post_id: post_id, user_id: current_user.id })
+
+  # save the comment
+  comment.save
+
+  # `redirect` back to wherever we came from
+  redirect(back)
+end
+
+delete '/comments/:id' do
+  # find comment and destroy
+  comment = Comment.find(params[:id])
+  if comment.user_id != current_user.id
+    halt(400, "not authorized yoo")  
+  end
+  
+  if comment
+    comment.destroy
+  end
+  redirect(back)
+end
+
+
+
+
+
+
+
+
 get '/home' do
   @billy_bob = Owner.find(6)
   erb :home
 end
+
 
 get '/fizzbuzz' do
 #   FizzBuzz
@@ -132,9 +178,88 @@ get '/fizzbuzz' do
       
       fizzbuzz_string_output.push(value_to_push == "" ? n : value_to_push)
     end
-    fizzbuzz_string_output.join(",<br>")
+    fizzbuzz_string_output.join("\n")
   end
   
   result = fizzbuzz(50, 100)
   result.to_s
 end
+
+
+
+
+
+get '/owners' do
+  @owners = Owner.all
+  puts "here are all the owners #{@owners.inspect}"
+  erb :'kitten_page/owners'
+end
+
+post '/owners' do
+  
+  owner_name = params[:owner_name]
+  password = params[:owner_password]
+  username = params[:owner_username]
+  age = params[:owner_age]
+  
+  @owner = Owner.new({name: owner_name, password: password, username: username, age: age})
+  
+  if @owner.save
+    redirect '/owners'
+  else
+    erb :'kitten_page/owners_new'
+  end
+end
+
+get '/owners/login' do
+  erb :'kitten_page/login'
+end
+
+get '/owners/new' do
+  @owner = Owner.new
+  erb :'kitten_page/owners_new'
+end
+
+get '/owners/:id' do
+  @owner = Owner.find(params[:id])
+  erb :'kitten_page/owner_show'
+end
+
+get '/owners/:id/kittens/new' do
+  @owner = Owner.find(params[:id])
+  @kitten = Kitten.new
+  erb :'kitten_page/kittens_new'
+end
+
+post '/owners/:id/kittens' do
+  kitten_name = params[:kitty]
+  breed = params[:breed]
+  @owner = Owner.find(params[:id])
+  
+  @kitten = Kitten.new({name: kitten_name, breed: breed, owner_id: @owner.id})
+  if @kitten.save
+    redirect "/owners"
+  else
+    erb :'/kitten_page/kittens_new'
+  end
+end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

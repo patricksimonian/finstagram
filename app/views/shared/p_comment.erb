@@ -1,0 +1,9 @@
+<li>
+  <p>
+      <%= comment.user.username %>: <%= comment.text %>
+      <form action="/comments/<%= comment.id %>" method="post">
+          <input type="hidden" name="_method" value="DELETE">
+          <button>remove comment</button>
+      </form>
+  </p>
+</li>

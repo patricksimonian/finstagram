@@ -4,6 +4,11 @@
            </header>
            <main role="main">
              <p>add kitten details below</p>
+             <ul class="errors">
+                 <% @kitten.errors.full_messages.each do |message| %>
+                     <li><%= message %></li>
+                 <% end %>
+             </ul>
              <form action="/owners/<%= @owner.id %>/kittens" method="POST">
 
                  <div class="form-group">

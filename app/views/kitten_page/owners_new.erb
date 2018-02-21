@@ -4,33 +4,27 @@
            </header>
            <main role="main">
              <p>add owner details below to register</p>
-             <form action="/owners" method="POST">
-                
-                 <div class="form-group">
-                    <label for="owner-name">Name</label>
-                    <input type="text" name="name" id="owner-name" minlength="2">
-                 </div>
+             <ul class="errors">
+                 <% @owner.errors.full_messages.each do |message| %>
+                     <li><%= message %></li>
+                 <% end %>
+             </ul>
+             <form method="POST" action="/owners">
+                 <label for="owner-name">Name</label>
+                 <input autofocus="true" name="owner_name" type="text" placeholder="owner name" id="owner-name">
                  
-                 <div class="form-group">
-                    <label for="username">username</label>
-                    <input type="text" name="username" id="username" minlength="2">
-                 </div>
+                 <label for="owner-username">User Name</label>
+                 <input autofocus="true" name="owner_username" type="text" placeholder="owner username" id="owner-username">
                  
-                 <div class="form-group">
-                    <label for="owner-age">Age</label>
-                    <input type="number" name="age" id="owner-age" min="1">
-                 </div>
+                 <label for="owner-age">Age</label>
+                 <input name="owner_age" type="number" placeholder="owner's age" id="owner-age">
                  
-                 <div class="form-group">
-                    <label for="owner-pw">Password</label>
-                    <input type="password" name="password" id="owner-pw" minlength="5">
-                 </div>
+                 <label for="owner-password">Password</label>
+                 <input name="owner_password" minlength="4" type="password" placeholder="password" id="owner-password">
                  
-                 <div class="form-group">
-                     <input type="submit" name="submit" value="Signup">
-                 </div>
+                 <button>Add Owner YOO</button>
              </form>
-
+            
              <footer>
                  <a href="/owners">back to owners</a>
              </footer>

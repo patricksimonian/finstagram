@@ -12,13 +12,12 @@
       <%= post.like_count %> likes
       <u class="comment-count"><%= post.comment_count %> comments</span>
   </div>
+  <% if current_user && allow_new_comment %>
+    <%= erb(:"shared/p_new_comment", {locals: {post: post}}) %>
+  <% end %>
   <ul class="comments">
      <% post.comments.each do |comment| %>
-      <li>
-          <p>
-              <%= comment.user.username %>: <%= comment.text %>
-          </p>
-      </li>
+       <%= erb(:"/shared/p_comment", {locals: {comment: comment}}) %>
       <% end %>
   </ul>
 </article>

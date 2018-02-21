@@ -136,23 +136,15 @@ main {
     animation: changeColor 5s ease-in-out;
 }
 
-/*@keyframes changeColor {*/
-/*    0% {*/
-/*        color: initial;*/
-/*        font-size: inherit;*/
-/*        transform: translateX(0px);*/
-/*    }*/
-    
-/*    25% {*/
-/*        color: #DC833D;*/
-/*    }*/
-/*    50% {*/
-/*        color: purple;*/
-/*        font-size: 24px;*/
-/*        transform: translateX(15px);*/
-/*    }*/
-/*    100% {*/
-/*        color: initial;*/
-/*        font-size: inherit;*/
+/*@media (min-width: 600px) {*/
+/*    .post .photo {*/
+/*        max-width: 400px;        */
 /*    }*/
 /*}*/
+
+
+@media (max-width: 600px) {
+    main {
+       width: 100%;
+    }
+}
